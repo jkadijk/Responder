@@ -1288,11 +1288,10 @@ class ProxyHandler (BaseHTTPServer.BaseHTTPRequestHandler):
                                                                     params, query,
                                                                     '')),
                                                self.request_version))
-                    for headers in self.headers.items():
-                        if "cookie" in headers:
-                           Cookie = self.headers['Cookie']
-                        else:
-                           Cookie = ''
+                    if "Cookie" in self.headers:
+                        Cookie = self.headers['Cookie']
+                    else:
+                        Cookie = ''
                     Message = "Requested URL: %s\nComplete Cookie: %s\nClient IP is: %s\n"%(self.path, Cookie, self.client_address[0])
                     if Verbose == True:
                        print Message
